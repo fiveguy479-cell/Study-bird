@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Bird</title>
+  <meta charset="UTF-8">
+  <title>Study Bird – Learning for Life</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  margin: 0;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
 
-header {
-  background: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-section {
-  background: white;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-}
+    section {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
 
-input, button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  font-size: 16px;
-}
+    h2 {
+      margin-top: 0;
+    }
 
-button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
 
-button:hover {
-  background: #45a049;
-}
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-.hidden {
-  display: none;
-}
+    button:hover {
+      background: #45a049;
+    }
 
-.subject {
-  margin-top: 20px;
-  padding: 15px;
-  background: #e8f5e9;
-  border-radius: 8px;
-}
-</style>
+    .hidden {
+      display: none;
+    }
+
+    .dashboard button {
+      margin: 5px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      color: #666;
+    }
+  </style>
 </head>
 
 <body>
@@ -62,47 +68,72 @@ button:hover {
 <header>
   <h1>Study Bird 🐦</h1>
   <p>Learning for Life</p>
-  <p><strong>Welcome from Haronn</strong></p>
-</header> Created by Haron 
+  <p><strong>Created by Haron</strong></p>
+</header>
 
-<!-- LOGIN -->
+<!-- LOGIN SECTION -->
 <section id="loginSection">
-  <h2>🎓 Student Login (Demo)</h2>
-  <input type="text" placeholder="Demo username">
-  <input type="password" placeholder="Demo password">
-  <button onclick="login()">Enter</button>
+  <h2>🇬🇧 UK ONLY – DEMO PROJECT</h2>
+  <p>This is a student-built demo website. No real accounts.</p>
+
+  <h3>🎓 Student Login (Demo)</h3>
+  <input type="email" placeholder="Student email">
+  <input type="password" placeholder="Password">
+  <button onclick="studentLogin()">Enter as Student</button>
+
+  <hr>
+
+  <h3>🏫 Teacher Login (Demo)</h3>
+  <input type="text" placeholder="Teacher username">
+  <input type="password" placeholder="Password">
+  <button onclick="teacherLogin()">Enter as Teacher</button>
 </section>
 
-<!-- DASHBOARD -->
-<section id="dashboard" class="hidden">
-  <h2>📚 Student Dashboard</h2>
+<!-- STUDENT DASHBOARD -->
+<section id="studentDashboard" class="hidden dashboard">
+  <h2>🎓 Student Dashboard</h2>
+  <p>Welcome, Student!</p>
 
-  <div class="subject">
-    <h3>Math</h3>
-    <p>Q: What is 5 × 6?</p>
-    <p>A: 30</p>
-  </div>
+  <button onclick="showSubject('Math')">Math</button>
+  <button onclick="showSubject('Science')">Science</button>
+  <button onclick="showSubject('English')">English</button>
+  <button onclick="showSubject('History')">History</button>
 
-  <div class="subject">
-    <h3>English</h3>
-    <p>Q: What is a noun?</p>
-    <p>A: A word that names a person, place, or thing.</p>
-  </div>
+  <p id="studentContent"></p>
+</section>
 
-  <div class="subject">
-    <h3>Science</h3>
-    <p>Q: What is gravity?</p>
-    <p>A: A force that pulls objects toward Earth.</p>
-  </div>
+<!-- TEACHER DASHBOARD -->
+<section id="teacherDashboard" class="hidden dashboard">
+  <h2>🏫 Teacher Dashboard</h2>
+  <p>Welcome, Teacher!</p>
 
-  <div class="subject">
-    <h3>History</h3>
-    <p>Q: When did World War 1 start?</p>
-    <p>A: World War 1 started in 1914.</p>
-  </div>
+  <button>View Classes (Demo)</button>
+  <button>Add Questions (Demo)</button>
+  <button>View Students (Demo)</button>
+
+  <p>This section is a demo for future features.</p>
+</section>
+
+<footer>
+  Study Bird © 2026 – Built by Harun
+</footer>
+
 <script>
-function login() {
-  document.getElementById("loginSection").classList.add("hidden");
-  document.getElementById("dashboard").classList.remove("hidden");
-}
+  function studentLogin() {
+    document.getElementById("loginSection").classList.add("hidden");
+    document.getElementById("studentDashboard").classList.remove("hidden");
+  }
+
+  function teacherLogin() {
+    document.getElementById("loginSection").classList.add("hidden");
+    document.getElementById("teacherDashboard").classList.remove("hidden");
+  }
+
+  function showSubject(subject) {
+    document.getElementById("studentContent").innerText =
+      subject + " questions will appear here soon.";
+  }
 </script>
+
+</body>
+</html>

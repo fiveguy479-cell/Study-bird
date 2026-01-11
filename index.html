@@ -1,127 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Study Bird</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Bird</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+}
 
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 30px;
-    }
+header {
+  background: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
 
-    .info {
-      background-color: #e8f5e9;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
+section {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-    section {
-      background-color: white;
-      margin: 20px;
-      padding: 25px;
-      border-radius: 10px;
-    }
+input, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+}
 
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
+button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+button:hover {
+  background: #45a049;
+}
 
-    button:hover {
-      background-color: #45a049;
-    }
+.hidden {
+  display: none;
+}
 
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-      color: green;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-      font-size: 14px;
-    }
-  </style>
+.subject {
+  margin-top: 20px;
+  padding: 15px;
+  background: #e8f5e9;
+  border-radius: 8px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <header>
   <h1>Study Bird 🐦</h1>
   <p>Learning for Life</p>
-  <p><strong>Welcome from Haron</strong></p>
-  <p>Created by Haron</p>
-  </header>
-</header>
+  <p><strong>Welcome from Haronn</strong></p>
+</header> Created by Haron 
 
-<div class="info">
-  🇬🇧 UK ONLY — DEMO PROJECT  
-  <br><br>
-  This is a <strong>student-built demo website</strong>.  
-  No real accounts. No official school systems.  
-  Built for learning and practice.
-</div>
-
-<!-- STUDENT LOGIN -->
-<section>
+<!-- LOGIN -->
+<section id="loginSection">
   <h2>🎓 Student Login (Demo)</h2>
-  <input type="text" placeholder="Demo Student Username" />
-  <input type="password" placeholder="Demo Password" />
-  <button onclick="studentLogin()">Enter Demo</button>
-  <div id="studentMsg" class="message"></div>
+  <input type="text" placeholder="Demo username">
+  <input type="password" placeholder="Demo password">
+  <button onclick="login()">Enter</button>
 </section>
 
-<!-- TEACHER LOGIN -->
-<section>
-  <h2>🏫 Teacher Login (Demo)</h2>
-  <input type="text" placeholder="Demo Teacher Username" />
-  <input type="password" placeholder="Demo Password" />
-  <button onclick="teacherLogin()">Enter Demo</button>
-  <div id="teacherMsg" class="message"></div>
-</section>
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
+  <h2>📚 Student Dashboard</h2>
 
-<footer>
-  Study Bird © 2026  
-  <br>
-  Demo / Practice Project — Built by a Student
-</footer>
+  <div class="subject">
+    <h3>Math</h3>
+    <p>Q: What is 5 × 6?</p>
+    <p>A: 30</p>
+  </div>
+
+  <div class="subject">
+    <h3>English</h3>
+    <p>Q: What is a noun?</p>
+    <p>A: A word that names a person, place, or thing.</p>
+  </div>
+
+  <div class="subject">
+    <h3>Science</h3>
+    <p>Q: What is gravity?</p>
+    <p>A: A force that pulls objects toward Earth.</p>
+  </div>
+
+  <div class="subject">
+    <h3>History</h3>
+    <p>Q: When did World War 1 start?</p>
+    <p>A: World War 1 started in 1914.</p>
+  </div>
+</section>
 
 <script>
-  function studentLogin() {
-    document.getElementById("studentMsg").innerText =
-      "✅ Demo Student Access Granted. Learning dashboard coming soon.";
-  }
-
-  function teacherLogin() {
-    document.getElementById("teacherMsg").innerText =
-      "✅ Demo Teacher Access Granted. Teacher tools coming soon.";
-  }
+function login() {
+  document.getElementById("loginSection").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+}
 </script>
 
 </body>

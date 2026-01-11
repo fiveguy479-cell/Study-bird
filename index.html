@@ -43,7 +43,127 @@
             margin: 20px;
             background-color: white;
         }
-    </style>
+    </style><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Bird</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #answer {
+      margin-top: 20px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Study Bird 🐦</h1>
+  <p>Created by YOU</p>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Math</a>
+  <a href="#">Science</a>
+  <a href="#">History</a>
+  <a href="#">English</a>
+</nav>
+
+<div class="container">
+  <h2>Ask a Question</h2>
+
+  <select id="subject">
+    <option>Math</option>
+    <option>Science</option>
+    <option>History</option>
+    <option>English</option>
+  </select>
+
+  <input type="text" id="question" placeholder="Type your question here">
+
+  <button onclick="answerQuestion()">Ask Study Bird</button>
+
+  <div id="answer"></div>
+</div>
+
+<footer>
+  Study Bird © 2026 – Learning for Life
+</footer>
+
+<script>
+  function answerQuestion() {
+    const subject = document.getElementById("subject").value;
+    const question = document.getElementById("question").value;
+    const answerBox = document.getElementById("answer");
+
+    if (question.trim() === "") {
+      answerBox.innerHTML = "❌ Please type a question.";
+      return;
+    }
+
+    answerBox.innerHTML =
+      "📘 <b>Subject:</b> " + subject + "<br>" +
+      "❓ <b>Your question:</b> " + question + "<br><br>" +
+      "✅ <b>Answer:</b> This is a demo answer. Real AI answers coming soon!";
+  }
+</script>
+
+</body>
+</html>
 </head>
 <body>
 
@@ -73,5 +193,106 @@
     <p>Ask an English question here.</p>
 </div>
 
-</body>
-</html>
+</body><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Bird</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #answer {
+      margin-top: 20px;
+      padding: 10px;
+      background: #eef;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Study Bird 🐦</h1>
+  <p>Created by YOU</p>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Math</a>
+  <a href="#">Science</a>
+  <a href="#">History</a>
+  <a href="#">English</a>
+</nav>
+
+<div class="container">
+  <h2>Ask a Question</h2>
+
+  <select id="subject">
+    <option>Math</option>
+    <option>Science</option>
+    <option>History</option>
+    <option>English</option>
+  </select>
+
+  <input type="text" id="question" placeholder="Type your question here">
+
+  <button onclick="answerQuestion()">Ask Study Bird</button>
+
+  <div id="answer"></div>
+</div>
+
+<footer>
+  Study Bird © 2026 – Learning for Life
+</footer>
+
+<script>
+ 

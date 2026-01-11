@@ -1,845 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Study Bird – Learning for Life</title>
+<meta charset="UTF-8">
+<title>Study Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+/* GENERAL */
+.hidden { display: none; }
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-    section {
-      max-width: 600px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
+/* WELCOME SCREEN */
+#welcome {
+  height: 100vh;
+  background: linear-gradient(135deg, #2e7d32, #7b1fa2);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#welcome h1 {
+  font-size: 40px;
+}
+#welcome p {
+  font-size: 18px;
+  color: #ffeb3b;
+}
 
-    h2 {
-      margin-top: 0;
-    }
+/* LOGIN */
+#login {
+  padding: 40px;
+  text-align: center;
+  background: #e8f5e9;
+  min-height: 100vh;
+}
+.login-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  margin: 20px auto;
+}
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+}
 
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-    button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #45a049;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .dashboard button {
-      margin: 5px 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      color: #666;
-    }
-  </style>
+/* DASHBOARD */
+#dashboard {
+  padding: 20px;
+  background: #f3e5f5;
+  min-height: 100vh;
+}
+.subjects button {
+  background: #4caf50;
+  color: white;
+  margin: 5px;
+}
+#questions {
+  margin-top: 20px;
+  background: #fffde7;
+  padding: 15px;
+  border-radius: 10px;
+}
+.question-box {
+  margin-bottom: 15px;
+}
+.hint {
+  color: #6a1b9a;
+  font-size: 14px;
+}
+</style>
 </head>
 
 <body>
+welcome to my study bird
+<div id="welcome" onclick="showLogin()">
+  <h1>Welcome to Study Board</h1>
+  <p>Created by Harum</p>
+  <p>📘 Learning • 📚 Books • 🧠 Knowledge</p>
+  <p>(Click anywhere to continue)</p>
+</div>
 
-<header>
-  <h1>Study Bird 🐦</h1>
-  <p>Learning for Life</p>
-  <p><strong>Created by Haron</strong></p>
-</header>
+<!-- LOGIN -->
+<div id="login" class="hidden">
+  <h2>Login</h2>
+  <button onclick="studentLogin()">Student</button>
+  <button onclick="teacherLogin()">Teacher</button>
 
-<!-- LOGIN SECTION -->
-<section id="loginSection">
-  <h2>🇬🇧 UK ONLY – DEMO PROJECT</h2>
-  <p>This is a student-built demo website. No real accounts.</p>
+  <div id="studentBox" class="login-box hidden">
+    <h3>Student Login</h3>
+    <input type="email" placeholder="Student Email">
+    <input type="password" placeholder="Password">
+    <button onclick="openDashboard()">Login</button>
+  </div>
 
-  <h3>🎓 Student Login (Demo)</h3>
-  <input type="email" placeholder="Student email">
-  <input type="password" placeholder="Password">
-  <button onclick="studentLogin()">Enter as Student</button>
+  <div id="teacherBox" class="login-box hidden">
+    <h3>Teacher Login</h3>
+    <input type="email" placeholder="Teacher Email">
+    <input type="password" placeholder="Password">
+    <button onclick="teacherMessage()">Login</button>
+  </div>
+</div>
 
-  <hr>
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <h2>Student Dashboard</h2>
+  <div class="subjects">
+    <button onclick="showQuestions('math')">Maths</button>
+    <button onclick="showQuestions('science')">Science</button>
+    <button onclick="showQuestions('english')">English</button>
+    <button onclick="showQuestions('history')">History</button>
+  </div>
 
-  <h3>🏫 Teacher Login (Demo)</h3>
-  <input type="text" placeholder="Teacher username">
-  <input type="password" placeholder="Password">
-  <button onclick="teacherLogin()">Enter as Teacher</button>
-</section>
-
-<!-- STUDENT DASHBOARD -->
-<section id="studentDashboard" class="hidden dashboard">
-  <h2>🎓 Student Dashboard</h2>
-  <p>Welcome, Student!</p>
-
-  <button onclick="showSubject('Math')">Math</button>
-  <button onclick="showSubject('Science')">Science</button>
-  <button onclick="showSubject('English')">English</button>
-  <button onclick="showSubject('History')">History</button>
-
-  <p id="studentContent"></p>
-</section>
-
-<!-- TEACHER DASHBOARD -->
-<section id="teacherDashboard" class="hidden dashboard">
-  <h2>🏫 Teacher Dashboard</h2>
-  <p>Welcome, Teacher!</p>
-
-  <button>View Classes (Demo)</button>
-  <button>Add Questions (Demo)</button>
-  <button>View Students (Demo)</button>
-
-  <p>This section is a demo for future features.</p>
-</section>
-
-<footer>
-  Study Bird © 2026 – Built by Harun
-</footer>
+  <div id="questions"></div>
+</div>
 
 <script>
-  function studentLogin() {
-    document.getElementById("loginSection").classList.add("hidden");
-    document.getElementById("studentDashboard").classList.remove("hidden");
-  }
+function showLogin() {
+  welcome.classList.add("hidden");
+  login.classList.remove("hidden");
+}
 
-  function teacherLogin() {
-    document.getElementById("loginSection").classList.add("hidden");
-    document.getElementById("teacherDashboard").classList.remove("hidden");
-  }
+function studentLogin() {
+  studentBox.classList.remove("hidden");
+  teacherBox.classList.add("hidden");
+}
 
-  function showSubject(subject) {
-    document.getElementById("studentContent").innerText =
-      subject + " questions will appear here soon.";
-  }
+function teacherLogin() {
+  teacherBox.classList.remove("hidden");
+  studentBox.classList.add("hidden");
+}
+
+function openDashboard() {
+  login.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+}
+
+function teacherMessage() {
+  alert("Teacher dashboard coming soon.");
+}
+
+function showQuestions(subject) {
+  const data = {
+    math: [
+      {q:"What is 30 + 40?", h:"Think of 3 + 4 first, then add the zero."},
+      {q:"What is 12 × 5?", h:"Multiply 12 by 5 step by step."}
+    ],
+    science: [
+      {q:"What is gravity?", h:"It pulls things toward Earth."},
+      {q:"What do plants need to grow?", h:"Think water, light, air."}
+    ],
+    english: [
+      {q:"What is a noun?", h:"It names a person, place, or thing."},
+      {q:"What is a verb?", h:"It shows action or state."}
+    ],
+    history: [
+      {q:"When did World War 1 start?", h:"Early 20th century."},
+      {q:"What is history?", h:"Study of past events."}
+    ]
+  };
+
+  let html = "<h3>Questions</h3>";
+  data[subject].forEach(item => {
+    html += `
+      <div class="question-box">
+        <p><strong>Q:</strong> ${item.q}</p>
+        <p class="hint"><strong>Hint:</strong> ${item.h}</p>
+        <input type="text" placeholder="Type your answer here">
+      </div>
+    `;
+  });
+
+  questions.innerHTML = html;
+}
 </script>
 
 </body>
 </html>
-
-<h2>Student Dashboard</h2>
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-<script
-  <h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script>
-<h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script>
-<h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script><h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script><h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script><h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script><h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script><h2>Student Dashboard</h2>
-
-<div class="subjects">
-  <button onclick="loadSubject('math')">Maths</button>
-  <button onclick="loadSubject('english')">English</button>
-  <button onclick="loadSubject('science')">Science</button>
-  <button onclick="loadSubject('history')">History</button>
-</div>
-
-<div id="questions"></div>
-
-<h3>Ask your own question</h3>
-<select id="customSubject">
-  <option value="Maths">Maths</option>
-  <option value="English">English</option>
-  <option value="Science">Science</option>
-  <option value="History">History</option>
-</select>
-
-<input type="text" id="customQuestion" placeholder="Type your question here">
-<button onclick="addCustomQuestion()">Add Question</button>
-
-<script>
-const data = {
-  math: [],
-  english: [],
-  science: [],
-  history: []
-};
-
-// Generate 30 questions per subject
-for (let i = 1; i <= 30; i++) {
-  data.math.push({
-    q: `Math Question ${i}`,
-    hint: `Think carefully and break the numbers into smaller parts.`
-  });
-  data.english.push({
-    q: `English Question ${i}`,
-    hint: `Think about words, meanings, or sentences.`
-  });
-  data.science.push({
-    q: `Science Question ${i}`,
-    hint: `Think about nature, forces, or experiments.`
-  });
-  data.history.push({
-    q: `History Question ${i}`,
-    hint: `Think about the past and important events.`
-  });
-}
-
-function loadSubject(subject) {
-  const box = document.getElementById("questions");
-  box.innerHTML = "";
-
-  data[subject].forEach((item, index) => {
-    box.innerHTML += `
-      <div class="card">
-        <h4>${index + 1}. ${item.q}</h4>
-        <p><strong>Hint:</strong> ${item.hint}</p>
-      </div>
-    `;
-  });
-}
-
-function addCustomQuestion() {
-  const subject = document.getElementById("customSubject").value.toLowerCase();
-  const question = document.getElementById("customQuestion").value;
-
-  if (question.trim() === "") return;
-
-  data[subject].push({
-    q: question,
-    hint: "Try to think step by step."
-  });
-
-  document.getElementById("customQuestion").value = "";
-  loadSubject(subject);
-}
-</script>

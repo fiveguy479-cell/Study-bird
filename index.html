@@ -1,298 +1,124 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Bird</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .content {
-            padding: 20px;
-            margin: 20px;
-            background-color: white;
-        }
-    </style><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Study Bird</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f4f4f4;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
     }
+
     header {
-      background: #4CAF50;
+      background-color: #4CAF50;
       color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .info {
+      background-color: #e8f5e9;
+      margin: 20px;
       padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background: #333;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
+      border-radius: 10px;
       font-weight: bold;
     }
-    .container {
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      margin-top: 20px;
-      border-radius: 5px;
+
+    section {
+      background-color: white;
+      margin: 20px;
+      padding: 25px;
+      border-radius: 10px;
     }
-    select, input, button {
+
+    input, button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-top: 10px;
       font-size: 16px;
     }
+
     button {
-      background: #4CAF50;
+      background-color: #4CAF50;
       color: white;
       border: none;
       cursor: pointer;
     }
+
     button:hover {
-      background: #45a049;
+      background-color: #45a049;
     }
-    #answer {
-      margin-top: 20px;
-      padding: 10px;
-      background: #eef;
-      border-radius: 5px;
+
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
     }
+
     footer {
+      background-color: #333;
+      color: white;
       text-align: center;
-      margin-top: 20px;
+      padding: 15px;
+      margin-top: 30px;
       font-size: 14px;
-      color: #555;
     }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1>Welcome to Study Bird 🐦</h1>
-  <p>Created by YOU</p>
+  <h1>Study Bird 🐦</h1>
+  <p>Learning for Life</p>
 </header>
 
-<nav>
-  <a href="#">Home</a>
-  <a href="#">Math</a>
-  <a href="#">Science</a>
-  <a href="#">History</a>
-  <a href="#">English</a>
-</nav>
-
-<div class="container">
-  <h2>Ask a Question</h2>
-
-  <select id="subject">
-    <option>Math</option>
-    <option>Science</option>
-    <option>History</option>
-    <option>English</option>
-  </select>
-
-  <input type="text" id="question" placeholder="Type your question here">
-
-  <button onclick="answerQuestion()">Ask Study Bird</button>
-
-  <div id="answer"></div>
+<div class="info">
+  🇬🇧 UK ONLY — DEMO PROJECT  
+  <br><br>
+  This is a <strong>student-built demo website</strong>.  
+  No real accounts. No official school systems.  
+  Built for learning and practice.
 </div>
 
+<!-- STUDENT LOGIN -->
+<section>
+  <h2>🎓 Student Login (Demo)</h2>
+  <input type="text" placeholder="Demo Student Username" />
+  <input type="password" placeholder="Demo Password" />
+  <button onclick="studentLogin()">Enter Demo</button>
+  <div id="studentMsg" class="message"></div>
+</section>
+
+<!-- TEACHER LOGIN -->
+<section>
+  <h2>🏫 Teacher Login (Demo)</h2>
+  <input type="text" placeholder="Demo Teacher Username" />
+  <input type="password" placeholder="Demo Password" />
+  <button onclick="teacherLogin()">Enter Demo</button>
+  <div id="teacherMsg" class="message"></div>
+</section>
+
 <footer>
-  Study Bird © 2026 – Learning for Life
+  Study Bird © 2026  
+  <br>
+  Demo / Practice Project — Built by a Student
 </footer>
 
 <script>
-  function answerQuestion() {
-    const subject = document.getElementById("subject").value;
-    const question = document.getElementById("question").value;
-    const answerBox = document.getElementById("answer");
+  function studentLogin() {
+    document.getElementById("studentMsg").innerText =
+      "✅ Demo Student Access Granted. Learning dashboard coming soon.";
+  }
 
-    if (question.trim() === "") {
-      answerBox.innerHTML = "❌ Please type a question.";
-      return;
-    }
-
-    answerBox.innerHTML =
-      "📘 <b>Subject:</b> " + subject + "<br>" +
-      "❓ <b>Your question:</b> " + question + "<br><br>" +
-      "✅ <b>Answer:</b> This is a demo answer. Real AI answers coming soon!";
+  function teacherLogin() {
+    document.getElementById("teacherMsg").innerText =
+      "✅ Demo Teacher Access Granted. Teacher tools coming soon.";
   }
 </script>
 
 </body>
 </html>
-</head>
-<body>
-
-<header>
-    <h1>Welcome to Study Bird</h1>
-</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#math">Math</a>
-    <a href="#science">Science</a>
-    <a href="#history">History</a>
-    <a href="#english">English</a>
-</nav>
-
-<div class="content">
-    <h2>Math Questions</h2>
-    <p>Ask a Math question here.</p>
-
-    <h2>Science Questions</h2>
-    <p>Ask a Science question here.</p>
-
-    <h2>History Questions</h2>
-    <p>Ask a History question here.</p>
-
-    <h2>English Questions</h2>
-    <p>Ask an English question here.</p>
-</div>
-
-</body><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Study Bird</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background: #333;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      margin-top: 20px;
-      border-radius: 5px;
-    }
-    select, input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
-    #answer {
-      margin-top: 20px;
-      padding: 10px;
-      background: #eef;
-      border-radius: 5px;
-    }
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>Welcome to Study Bird 🐦</h1>
-  <p>Created by YOU</p>
-</header>
-
-<nav>
-  <a href="#">Home</a>
-  <a href="#">Math</a>
-  <a href="#">Science</a>
-  <a href="#">History</a>
-  <a href="#">English</a>
-</nav>
-
-<div class="container">
-  <h2>Ask a Question</h2>
-
-  <select id="subject">
-    <option>Math</option>
-    <option>Science</option>
-    <option>History</option>
-    <option>English</option>
-  </select>
-
-  <input type="text" id="question" placeholder="Type your question here">
-
-  <button onclick="answerQuestion()">Ask Study Bird</button>
-
-  <div id="answer"></div>
-</div>
-
-<footer>
-  Study Bird © 2026 – Learning for Life
-</footer>
-
-<script>
- 

@@ -1,194 +1,492 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<title>Study Board</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun School.com - HARON'S DREAM SITE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+        /* GREEN WELCOME FIRST - TOP OF PAGE */
+        .welcome {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+            width: 100%;
+        }
 
-/* GENERAL */
-.hidden { display: none; }
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-}
+        .welcome h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
 
-/* WELCOME SCREEN */
-#welcome {
-  height: 100vh;
-  background: linear-gradient(135deg, #2e7d32, #7b1fa2);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-#welcome h1 {
-  font-size: 40px;
-}
-#welcome p {
-  font-size: 18px;
-  color: #ffeb3b;
-}
+        .welcome p {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-/* LOGIN */
-#login {
-  padding: 40px;
-  text-align: center;
-  background: #e8f5e9;
-  min-height: 100vh;
-}
-.login-box {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 300px;
-  margin: 20px auto;
-}
-input {
-  width: 90%;
-  padding: 10px;
-  margin: 8px 0;
-}
+        .creator {
+            font-style: italic;
+            color: #f1c40f;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin: 1rem 0 2rem;
+        }
 
-/* DASHBOARD */
-#dashboard {
-  padding: 20px;
-  background: #f3e5f5;
-  min-height: 100vh;
-}
-.subjects button {
-  background: #4caf50;
-  color: white;
-  margin: 5px;
-}
-#questions {
-  margin-top: 20px;
-  background: #fffde7;
-  padding: 15px;
-  border-radius: 10px;
-}
-.question-box {
-  margin-bottom: 15px;
-}
-.hint {
-  color: #6a1b9a;
-  font-size: 14px;
-}
-</style>
+        .start-btn {
+            background-color: #f1c40f;
+            color: #2c3e50;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* HEADER */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #f1c40f;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f1c40f;
+        }
+
+        .search-bar {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        #search-input {
+            padding: 0.5rem;
+            width: 250px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #search-btn {
+            padding: 0.5rem 1rem;
+            background-color: #f1c40f;
+            color: #2c3e50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* LOGINS */
+        .login-section {
+            background-color: #f8f9fa;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .login-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        .login-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 4px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .student-login-btn {
+            background-color: #2ecc71;
+        }
+
+        .student-login-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .login-message {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        /* MAIN CONTENT */
+        #content-area {
+            background-color: #ecf0f1;
+            padding: 3rem 5%;
+            min-height: 300px;
+            text-align: center;
+        }
+
+        #content-area h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-area {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .game-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .game-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-option {
+            padding: 0.8rem;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .game-option:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .correct {
+            background-color: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .incorrect {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .game-score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 1rem;
+        }
+
+        .section {
+            padding: 3rem 5%;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .subject-card {
+            border-top: 5px solid #3498db;
+        }
+
+        .game-card {
+            border-top: 5px solid #f1c40f;
+            background-color: #f8f9fa;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #3498db;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .answer {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: white;
+        }
+
+        .dola-mention {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
-welcome to my study bird
-<div id="welcome" onclick="showLogin()">
-  <h1>Welcome to Study Board</h1>
-  <p>Created by Harum</p>
-  <p>📘 Learning • 📚 Books • 🧠 Knowledge</p>
-  <p>(Click anywhere to continue)</p>
-</div>
+    <!-- GREEN WELCOME SECTION -->
+    <section class="welcome">
+        <h1>WELCOME TO FUN SCHOOL.COM</h1>
+        <p>Your Ultimate Learning Hub for Abridge Secondary</p>
+        <p class="creator">CREATED BY HARON</p>
+        <button class="start-btn" onclick="scrollToLogins()">START HERE</button>
+    </section>
 
-<!-- LOGIN -->
-<div id="login" class="hidden">
-  <h2>Login</h2>
-  <button onclick="studentLogin()">Student</button>
-  <button onclick="teacherLogin()">Teacher</button>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Fun School.com</a>
+            <nav>
+                <ul>
+                    <li><a href="#logins">Logins</a></li>
+                    <li><a href="#subjects">Subjects</a></li>
+                    <li><a href="#games">Fun Gaming</a></li>
+                    <li><a href="#qa">Q&A</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search questions/topics...">
+                <button id="search-btn" onclick="searchSite()">Search</button>
+            </div>
+        </div>
+    </header>
 
-  <div id="studentBox" class="login-box hidden">
-    <h3>Student Login</h3>
-    <input type="email" placeholder="Student Email">
-    <input type="password" placeholder="Password">
-    <button onclick="openDashboard()">Login</button>
-  </div>
+    <!-- LOGIN SECTION -->
+    <section class="login-section" id="logins">
+        <div class="login-card">
+            <h3>STUDENT LOGIN</h3>
+            <input type="text" class="login-input" id="student-username" placeholder="Student ID">
+            <input type="password" class="login-input" id="student-password" placeholder="Password">
+            <button class="login-btn student-login-btn" onclick="studentLogin()">Login</button>
+            <div id="student-message" class="login-message"></div>
+            <p style="text-align:center; margin-top:1rem; font-size:0.9rem;">Sample: ID = S123 | Password = student123</p>
+        </div>
 
-  <div id="teacherBox" class="login-box hidden">
-    <h3>Teacher Login</h3>
-    <input type="email" placeholder="Teacher Email">
-    <input type="password" placeholder="Password">
-    <button onclick="teacherMessage()">Login</button>
-  </div>
-</div>
+        <div class="login-card">
+            <h3>TEACHER LOGIN</h3>
+            <input type="text" class="login-input" id="teacher-username" placeholder="Teacher ID">
+            <input type="password" class="login-input" id="teacher-password" placeholder="Password">
+            <button class="login-btn" onclick="teacherLogin()">Login</button>
+            <div id="teacher-message" class="login-message"></div>
+            <p style="text-align:center; margin-top:1rem; font-size:0.9rem;">Sample: ID = T45 | Password = teacher45</p>
+        </div>
+    </section>
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="hidden">
-  <h2>Student Dashboard</h2>
-  <div class="subjects">
-    <button onclick="showQuestions('math')">Maths</button>
-    <button onclick="showQuestions('science')">Science</button>
-    <button onclick="showQuestions('english')">English</button>
-    <button onclick="showQuestions('history')">History</button>
-  </div>
+    <!-- MAIN CONTENT -->
+    <section id="content-area">
+        <h3>Click START Above or Login to Play Games!</h3>
+        <p>All games are fully working now!</p>
+    </section>
 
-  <div id="questions"></div>
-</div>
+    <!-- SUBJECTS -->
+    <section class="section" id="subjects">
+        <h2>OUR SUBJECTS</h2>
+        <div class="grid">
+            <div class="card subject-card">
+                <h3>SCIENCE</h3>
+                <button class="btn" onclick="showScience()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>ENGLISH</h3>
+                <button class="btn" onclick="showEnglish()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>HISTORY</h3>
+                <button class="btn" onclick="showHistory()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>GEOGRAPHY</h3>
+                <button class="btn" onclick="showGeography()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>COMPUTER SCIENCE</h3>
+                <button class="btn" onclick="showCompSci()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>MUSIC</h3>
+                <button class="btn" onclick="showMusic()">View Content</button>
+            </div>
+            <div class="card subject-card">
+                <h3>FOOD TECH</h3>
+                <button class="btn" onclick="showFoodTech()">View Content</button>
+            </div>
+        </div>
+    </section>
 
-<script>
-function showLogin() {
-  welcome.classList.add("hidden");
-  login.classList.remove("hidden");
-}
+    <!-- GAMES SECTION -->
+    <section class="section" id="games">
+        <h2>FUN LEARNING GAMES</h2>
+        <div class="grid">
+            <div class="card game-card">
+                <h3>MATHS CHALLENGE</h3>
+                <button class="btn" onclick="startMathGame()">PLAY NOW</button>
+            </div>
+            <div class="card game-card">
+                <h3>ENGLISH WORD QUIZ</h3>
+                <button class="btn" onclick="startWordGame()">PLAY NOW</button>
+            </div>
+            <div class="card game-card">
+                <h3>SCIENCE TRIVIA</h3>
+                <button class="btn" onclick="startScienceGame()">PLAY NOW</button>
+            </div>
+        </div>
+    </section>
 
-function studentLogin() {
-  studentBox.classList.remove("hidden");
-  teacherBox.classList.add("hidden");
-}
+    <!-- Q&A SECTION -->
+    <section class="section" id="qa">
+        <h2>ASK A QUESTION</h2>
+        <div class="game-area">
+            <p>Type your question about GCSEs or subjects below:</p>
+            <input type="text" id="qa-input" placeholder="e.g., What is photosynthesis?" style="width: 100%; padding: 0.8rem; margin: 1rem 0; border-radius: 4px; border: 2px solid #3498db;">
+            <button class="btn" onclick="answerQuestion()">GET ANSWER</button>
+            <div id="qa-answer" class="answer" style="display: none;"></div>
+        </div>
+    </section>
 
-function teacherLogin() {
-  teacherBox.classList.remove("hidden");
-  studentBox.classList.add("hidden");
-}
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+        <h2>ABOUT FUN SCHOOL.COM</h2>
+        <p>Built by Haron – All features 100% working! Inspired by <span class="dola-mention">Dola</span>.</p>
+    </section>
 
-function openDashboard() {
-  login.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-}
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Fun School.com | CREATED BY HARON</p>
+    </footer>
 
-function teacherMessage() {
-  alert("Teacher dashboard coming soon.");
-}
+    <!-- ALL WORKING FUNCTIONS -->
+    <script>
+        // Scroll to logins when Start button is clicked
+        function scrollToLogins() {
+            document.getElementById('logins').scrollIntoView({behavior: 'smooth'});
+        }
 
-function showQuestions(subject) {
-  const data = {
-    math: [
-      {q:"What is 30 + 40?", h:"Think of 3 + 4 first, then add the zero."},
-      {q:"What is 12 × 5?", h:"Multiply 12 by 5 step by step."}
-    ],
-    science: [
-      {q:"What is gravity?", h:"It pulls things toward Earth."},
-      {q:"What do plants need to grow?", h:"Think water, light, air."}
-    ],
-    english: [
-      {q:"What is a noun?", h:"It names a person, place, or thing."},
-      {q:"What is a verb?", h:"It shows action or state."}
-    ],
-    history: [
-      {q:"When did World War 1 start?", h:"Early 20th century."},
-      {q:"What is history?", h:"Study of past events."}
-    ]
-  };
-
-  let html = "<h3>Questions</h3>";
-  data[subject].forEach(item => {
-    html += `
-      <div class="question-box">
-        <p><strong>Q:</strong> ${item.q}</p>
-        <p class="hint"><strong>Hint:</strong> ${item.h}</p>
-        <input type="text" placeholder="Type your answer here">
-      </div>
-    `;
-  });
-
-  questions.innerHTML = html;
-}
-</script>
-
-</body>
-</html>
+        // Student Login
+        function studentLogin() {
+           
